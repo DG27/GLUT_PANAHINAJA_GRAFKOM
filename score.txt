@@ -3677,8 +3677,11 @@ void myTimerrintangan(int id){
     glutPostRedisplay();
     glutTimerFunc(level, myTimerrintangan, 1); // request next timer event
 }
+
 void backgroundawal(){
-    //urut
+    glPushMatrix();
+    nilai = 0;
+    glPopMatrix();
     sky();
     glPushMatrix();
         glTranslated(10,30,0);
@@ -3765,6 +3768,7 @@ void backgroundawal(){
 }
 void backgroundlevel1(){
     glClear(GL_COLOR_BUFFER_BIT);
+
     sky();
     glPushMatrix();
         glTranslated(10,30,0);
@@ -3880,6 +3884,7 @@ void backgroundlevel1(){
 
 }
 void backgroundlevel2(){
+
     sky2();
     glPushMatrix();
         glTranslated(10,30,0);
@@ -3958,7 +3963,10 @@ void backgroundlevel2(){
         glPopMatrix();
     }
         ///---------------------------------------------------score
-        tulis(-48,45,"Score :");
+    tulis(-48,45,"Score :"); //posisi score
+    char score[100] = {"0"}; //inisial
+    sprintf(score, "%i", nilai); //konversi time ke label
+    tulis(-42, 45, score); //posisi angka score
         glPushMatrix();
         glTranslated(target,0.0,0.0);
         sasaran();
@@ -3986,6 +3994,7 @@ void backgroundlevel2(){
 
 }
 void backgroundlevel3(){
+
     sky3();
 
     glPushMatrix();
@@ -4065,7 +4074,10 @@ void backgroundlevel3(){
         glPopMatrix();
     }
         ///---------------------------------------------------score
-        tulis(-48,45,"Score :");
+    tulis(-48,45,"Score :"); //posisi score
+    char score[100] = {"0"}; //inisial
+    sprintf(score, "%i", nilai); //konversi time ke label
+    tulis(-42, 45, score); //posisi angka score
     glPushMatrix();
         glTranslated(target,0.0,0.0);
         sasaran();
@@ -4162,10 +4174,11 @@ void backgroundakhir(){
     tulis(-3,-20, "Score :");
     tulis (-10,-35, "Klik Space untuk ke Main Menu");
     tulis (-10,-40, "Klik Esc untuk keluar Game");
-    ///char score[100] = {"0"};
-//    sprintf(score, "%i", nilai); //konversi time ke label
-//    tulis(30, 0, score);
+    char score[100] = {"0"};
+    sprintf(score, "%i", nilai); //konversi time ke label
+    tulis(3, -20, score);
     glPopMatrix();
+
 
     glFlush();
     glutSwapBuffers();
@@ -4194,6 +4207,7 @@ void panahjalan(int a){
             jalan=false;
         }
         if(kecPanah==100){
+            nilai -= 5;
             kecPanah=0;
             jalan=false;
         }
