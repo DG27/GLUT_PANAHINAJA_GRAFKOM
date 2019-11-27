@@ -1961,6 +1961,7 @@ glTranslated(9,-7,0);
     glPopMatrix();
     glPopMatrix();
 }
+///---------------------------------------rumput
 void rumput(){
     glBegin(GL_POLYGON);
         //gradient 1
@@ -3681,7 +3682,14 @@ void myTimerrintangan(int id){
 void backgroundawal(){
     glPushMatrix();
     nilai = 0;
+    jalan = false;
+    sasar = false;
     glPopMatrix();
+
+    glPushMatrix();
+    jumlahPanah = 3;
+    glPopMatrix();
+
     sky();
     glPushMatrix();
         glTranslated(10,30,0);
@@ -4058,12 +4066,14 @@ void backgroundlevel3(){
 
     if(jumlahPanah>=3){
         glPushMatrix();
+        //nilai += 2;
             amunisi();
         glPopMatrix();
     }
     if(jumlahPanah>=2){
         glPushMatrix();
             glTranslated(3,0,0);
+       // nilai += 2;
             amunisi();
         glPopMatrix();
     }
@@ -4202,7 +4212,14 @@ void panahjalan(int a){
     if(jalan){
         kecPanah+=2;
         if(kecPanah==36&&target>=-5.9&&target<=5.9){
-            nilai += 10;
+
+            if(jumlahPanah==3){
+                nilai+=3;
+            }else if(jumlahPanah ==2){
+                nilai +=2;
+            }else if (jumlahPanah ==1){
+                nilai +=1;
+            }
             sasar=false;
             jalan=false;
         }
